@@ -2,7 +2,7 @@
 """
 Created on Mon Jul 31 22:06:35 2017
 
-@author: Benny
+@author: Benny Christian Henning
 """
 
 import random as rnd
