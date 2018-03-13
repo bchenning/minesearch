@@ -8,11 +8,11 @@ Created on Mon Jul 31 22:03:49 2017
 
 import field, pygame
 
-
+# test commiting
 
 def main():
     """Hauptfunktion mit allen Funktionen und Variablen"""
-    
+
     #interpretieren der Map zur Darstellung der richtigen Tiles
     tile_dic = {
         '*' : pygame.image.load("./Tiles/MINESWEEPER_M.png"),
@@ -44,13 +44,13 @@ def main():
     except ValueError:
         p = (height*width)//7
         print(p)
-    
-    
+
+
     gameBoard = field.Field(height, width, p)
     tilesize = 72
     mapheight = gameBoard.height
     mapwidth = gameBoard.width
-    
+
     gameDisplay = pygame.display.set_mode((mapwidth * tilesize, mapheight * tilesize))
 
     pygame.display.set_caption("Minesweeper")
@@ -72,16 +72,16 @@ def main():
 leer oder eine Zahlen sind und zeigt dieses an.
 Wenn das gerade zu ueberpruefende Feld leer ist, ueberprueft er dessen
 umliegende noch dazu"""
-    
+
         if x == 0:                b = (0,1)
         elif x == gameBoard.width-1:  b = (0,-1)
         else:                     b = (-1,0,1)
         if y == 0:                h = (0,1)
         elif y == gameBoard.height-1: h = (0,-1)
         else:                     h = (-1,0,1)
-    
+
         gameBoard.emptyfield[y][x] = gameBoard.solution[y][x]
-    
+
         for i in h:
             for j in b:
                 if gameBoard.solution[y+i][x+j] != '.':
@@ -90,7 +90,7 @@ umliegende noch dazu"""
                     not (gameBoard.emptyfield[y+i][x+j] == gameBoard.solution[y+i][x+j])):
                     gameBoard.emptyfield[y+i][x+j] = gameBoard.solution[y+i][x+j]
                     check(x+j, y+i)
-            
+
 
     def leftClick(x, y):
         """Reaktion auf einen Linksklick"""
@@ -116,7 +116,7 @@ umliegende noch dazu"""
         else:                     h = (-1,0,1)
 
         anzahl = 0
-        
+
         for i in h:
             for j in b:
                 if gameBoard.emptyfield[y+i][x+j] == 'f':
@@ -134,7 +134,7 @@ umliegende noch dazu"""
 
         return True
 
-    
+
     def rightClick(x, y):
         """Reaktion auf einen Rechtsklick"""
         if gameBoard.emptyfield[y][x] != gameBoard.solution[y][x]:
@@ -143,8 +143,8 @@ umliegende noch dazu"""
             else:
                 gameBoard.emptyfield[y][x] = 0
 
-    
-        
+
+
     def endcheck():
         """Ueberprueft ob Spiel gewonnen und beendet endsprechend das Spiel und
 gibt zurueck ob das stimmt oder nicht"""
@@ -160,7 +160,7 @@ gibt zurueck ob das stimmt oder nicht"""
                     win[i][j] = True
 
 
-                
+
         alltrue = [ all(win[i][j] for j in range(gameBoard.width))
                     for i in range(gameBoard.height) ]
         if all(alltrue[i] for i in range(gameBoard.height)):
@@ -168,7 +168,7 @@ gibt zurueck ob das stimmt oder nicht"""
 
     #Ende Funktionsbereich
 
-    
+
     #Spielschleife
     while laeuft:
         for row in range(mapheight):
@@ -176,7 +176,7 @@ gibt zurueck ob das stimmt oder nicht"""
                 image = tile_dic[gamefield[row][col]].convert()
                 gameDisplay.blit(image, (col * tilesize, row * tilesize))
 
-    
+
         pygame.display.update()
 
         #Schleife fuer Eventmanagement
@@ -197,22 +197,22 @@ gibt zurueck ob das stimmt oder nicht"""
                     if not laeuft:
                         text = 'Du hast verloren.'
                         print(text)
-                        
-                    
+
+
                 elif pygame.mouse.get_pressed() == (0,0,1):
                     rightClick(x, y)
             if event.type == pygame.QUIT:
                 laeuft = False
                 text = 'Du hast aufgegeben.'
                 print(text)
-                
-                
+
+
         if endcheck() and laeuft:
             text = 'Du hast gewonnen.'
             print(text)
             laeuft = False
 
-            
+
         if timer != 0:
             timer += dt
             if timer >= 0.5:
