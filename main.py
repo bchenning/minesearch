@@ -6,7 +6,8 @@ Created on Mon Jul 31 22:03:49 2017
 
 """
 
-import field, pygame
+import field
+import pygame
 
 # test commiting
 
