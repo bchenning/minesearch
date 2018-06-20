@@ -9,8 +9,6 @@ Created on Mon Jul 31 22:03:49 2017
 import field
 import pygame
 
-# test commiting
-
 def main():
     """Hauptfunktion mit allen Funktionen und Variablen"""
 
