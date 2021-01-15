@@ -6,26 +6,28 @@ Created on Mon Jul 31 22:03:49 2017
 
 """
 
-import field
+from minesearch import field
+from os.path import dirname, abspath
 import pygame
 
 
 def main():
     """Start the MineSearch game."""
     # interpretieren der Map zur Darstellung der richtigen Tiles
+    tile_dir_path = dirname(abspath(__file__)) + "/Tiles/"
     tile_dic = {
-        '*': pygame.image.load("./Tiles/MINESWEEPER_M.png"),
-        '.': pygame.image.load("./Tiles/MINESWEEPER_X.png"),
-        0: pygame.image.load("./Tiles/MINESWEEPER_0.png"),
-        1: pygame.image.load("./Tiles/MINESWEEPER_1.png"),
-        2: pygame.image.load("./Tiles/MINESWEEPER_2.png"),
-        3: pygame.image.load("./Tiles/MINESWEEPER_3.png"),
-        4: pygame.image.load("./Tiles/MINESWEEPER_4.png"),
-        5: pygame.image.load("./Tiles/MINESWEEPER_5.png"),
-        6: pygame.image.load("./Tiles/MINESWEEPER_6.png"),
-        7: pygame.image.load("./Tiles/MINESWEEPER_7.png"),
-        8: pygame.image.load("./Tiles/MINESWEEPER_8.png"),
-        'f': pygame.image.load("./Tiles/MINESWEEPER_F.png")
+        '*': pygame.image.load(tile_dir_path + "MINESWEEPER_M.png"),
+        '.': pygame.image.load(tile_dir_path + "MINESWEEPER_X.png"),
+        0: pygame.image.load(tile_dir_path + "MINESWEEPER_0.png"),
+        1: pygame.image.load(tile_dir_path + "MINESWEEPER_1.png"),
+        2: pygame.image.load(tile_dir_path + "MINESWEEPER_2.png"),
+        3: pygame.image.load(tile_dir_path + "MINESWEEPER_3.png"),
+        4: pygame.image.load(tile_dir_path + "MINESWEEPER_4.png"),
+        5: pygame.image.load(tile_dir_path + "MINESWEEPER_5.png"),
+        6: pygame.image.load(tile_dir_path + "MINESWEEPER_6.png"),
+        7: pygame.image.load(tile_dir_path + "MINESWEEPER_7.png"),
+        8: pygame.image.load(tile_dir_path + "MINESWEEPER_8.png"),
+        'f': pygame.image.load(tile_dir_path + "MINESWEEPER_F.png")
     }
 
     # Initialisierungsphase
