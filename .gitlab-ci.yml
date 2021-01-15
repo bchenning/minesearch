@@ -1,11 +1,7 @@
 image: ubuntu:latest
 
 stages:
-  - test
   - deploy
-
-include:
-  - template: Dependency-Scanning.gitlab-ci.yml
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
@@ -19,12 +15,12 @@ before_script:
   - apt update && apt upgrade -y
   - apt install python3 python3-pip -y
   - python3 -V  # Print out python version for debugging
-  - pip install virtualenv
+  - pip3 install virtualenv
   - virtualenv venv
   - source venv/bin/activate
 
 wheel_and_tar:
   stage: deploy
   script:
-    - pip install --upgrade setuptools wheel pep517
+    - pip3 install --upgrade setuptools wheel pep517
     - python3 -m pep517.build .
