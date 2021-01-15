@@ -23,7 +23,7 @@ before_script:
 test_whl:
   stage: test
   script:
-    - pip -V
+    - pip install --upgrade setuptools wheel pep517
 
 release:
   stage: deploy
