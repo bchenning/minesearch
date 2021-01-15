@@ -1,5 +1,8 @@
 image: ubuntu:latest
 
+variables:
+  CI_COMMIT_TAG_DUMMY: "1.0.0"
+
 stages:
   - test
   - deploy
@@ -25,7 +28,7 @@ test_whl:
   script:
     - pip install --upgrade setuptools wheel pep517
     - python3 -m pep517.build .
-    - pip install dist/minesearch-0.9-py3-none-any.whl
+    - pip install dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG_DUMMY-py3-none-any.whl
 
 release:
   stage: deploy
@@ -37,4 +40,4 @@ release:
   artifacts:
     name: "$CI_JOB_NAME"
     paths:
-      - dist/
+      - dist/*.whl
