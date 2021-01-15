@@ -38,6 +38,8 @@ wheel-release:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
     - if: $CI_COMMIT_TAG
+  before_script:
+    - echo ''
   script:
     - echo 'Wheel release $CI_COMMIT_TAG'
   release:
