@@ -1,6 +1,7 @@
 image: ubuntu:latest
 
 stages:
+  - test
   - deploy
 
 variables:
@@ -19,10 +20,17 @@ before_script:
   - virtualenv venv
   - source venv/bin/activate
 
+test_whl:
+  stage: test
+  only:
+    - tags
+  script:
+    - pip -V
+
 release:
   stage: deploy
-#  only:
-#    - tags
+  only:
+    - tags
   script:
     - pip3 install --upgrade setuptools wheel pep517
     - python3 -m pep517.build .
