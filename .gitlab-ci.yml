@@ -1,11 +1,10 @@
 image: ubuntu:latest
 
 stages:
-  - test
   - deploy
+  - release
 
 variables:
-  CI_COMMIT_TAG_DUMMY: "1.0.0"
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
 cache:
@@ -21,21 +20,30 @@ before_script:
   - virtualenv venv
   - source venv/bin/activate
 
-test_whl:
-  stage: test
-  script:
-    - pip install --upgrade setuptools wheel pep517
-    - python3 -m pep517.build .
-    - pip install dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG_DUMMY-py3-none-any.whl
-
-release:
+wheel-deploy:
   stage: deploy
   only:
     - tags
   script:
     - pip3 install --upgrade setuptools wheel pep517
     - python3 -m pep517.build .
+    - pip install dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG-py3-none-any.whl
   artifacts:
     name: "$CI_JOB_NAME"
     paths:
       - dist/*.whl
+
+wheel-release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo 'Wheel release $CI_COMMIT_TAG'
+  release:
+    name: 'Release $CI_COMMIT_TAG'
+    description: 'wheel release $CI_COMMIT_TAG'
+    tag_name: '$CI_COMMIT_TAG'
+    ref: '$CI_COMMIT_TAG'
+  dependencies:
+    - wheel-deploy
