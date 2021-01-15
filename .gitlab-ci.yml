@@ -22,8 +22,6 @@ before_script:
 
 test_whl:
   stage: test
-  only:
-    - tags
   script:
     - pip -V
 
