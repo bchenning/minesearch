@@ -19,8 +19,10 @@ before_script:
   - virtualenv venv
   - source venv/bin/activate
 
-wheel_and_tar:
+release:
   stage: deploy
+  only:
+    - tags
   script:
     - pip3 install --upgrade setuptools wheel pep517
     - python3 -m pep517.build .
