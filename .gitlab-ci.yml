@@ -1,13 +1,11 @@
 image: ubuntu:latest
 
-variables:
-  CI_COMMIT_TAG_DUMMY: "1.0.0"
-
 stages:
   - test
   - deploy
 
 variables:
+  CI_COMMIT_TAG_DUMMY: "1.0.0"
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
 cache:
