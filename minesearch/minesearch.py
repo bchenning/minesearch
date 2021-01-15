@@ -229,7 +229,7 @@ def main():
         ((mapwidth-4.5) * tilesize/2, (mapheight-1) * tilesize/2 - 10))
 
     pygame.display.update()
-    pygame.time.delay(2000)
+    pygame.time.delay(5000)
     pygame.font.quit()
     pygame.quit()
 

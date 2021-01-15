@@ -1,0 +1,7 @@
+
+venv
+dist
+MANIFEST
+minesearch.egg-info
+build
+__pycache__
