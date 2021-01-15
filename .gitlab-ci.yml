@@ -21,8 +21,8 @@ before_script:
 
 release:
   stage: deploy
-  only:
-    - tags
+#  only:
+#    - tags
   script:
     - pip3 install --upgrade setuptools wheel pep517
     - python3 -m pep517.build .
