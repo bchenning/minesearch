@@ -24,6 +24,8 @@ test_whl:
   stage: test
   script:
     - pip install --upgrade setuptools wheel pep517
+    - python3 -m pep517.build .
+    - pip install dist/minesearch-0.9-py3-none-any.whl
 
 release:
   stage: deploy
