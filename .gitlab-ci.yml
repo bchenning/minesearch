@@ -26,3 +26,4 @@ release:
   script:
     - pip3 install --upgrade setuptools wheel pep517
     - python3 -m pep517.build .
+    - ls
